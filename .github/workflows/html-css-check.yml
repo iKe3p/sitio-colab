@@ -1,0 +1,20 @@
+name: Validación HTML y CSS
+on:
+  push:
+    branches: [ main, feature/* ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obtener código
+        uses: actions/checkout@v4
+      - name: Validar HTML
+        uses: Cyb3r-Jak3/htmlhint-action@v1.3.0
+        with:
+          files: "**/*.html"
+      - name: Validar CSS
+        uses: cssstats/cssstats-action@v1
+        with:
+          files: "css/**/*.css"
