@@ -10,11 +10,14 @@ jobs:
     steps:
       - name: Obtener código
         uses: actions/checkout@v4
+
+      # ... (Validar HTML es correcto)
       - name: Validar HTML
         uses: Cyb3r-Jak3/htmlhint-action@v1.3.0
         with:
           files: "**/*.html"
-      - name: Validar CSS
-        uses: cssstats/cssstats-action@v1
-        with:
-          files: "css/**/*.css"
+
+      - name: Validar CSS con Stylelint (Alternativa) 💡
+        run: |
+          npm install stylelint stylelint-config-standard
+          npx stylelint "css/**/*.css" --fail-on-error
